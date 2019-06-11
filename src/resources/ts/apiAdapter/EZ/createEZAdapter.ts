@@ -6,7 +6,6 @@ const createEZAdapter = (): CMSAdapter => {
   return {
     getPageData: async (pageId: number) => {
       const pageData: EZPage = await getDataByContentId(pageId);
-      console.log(pageData);
 
       return {
         title: pageData.title,
