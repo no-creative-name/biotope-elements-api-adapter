@@ -1,0 +1,105 @@
+// GLOBAL SASS SETTINGS
+
+// FONTS
+$font-family-sans-serif: "Frutiger Neue LT";
+$font-weight-normal:     400;
+$font-weight-bold:       600;
+
+// Primary colors
+$white: #fff;
+$black: #000;
+
+//Secondary colors
+$red: #ff2941;
+$warmSteel: #babdbe;
+$coolSteel: #eceff1;
+
+//Tertiary colors
+$skyBlue: #55aafa;
+$eclecticBlue: #37329b;
+
+//Status colors
+$statusGreen: #58f099;
+$statusYellow: #fbf16d;
+$statusRed: $red;
+
+//Shades
+$black-90: #191919;
+$black-80: #333333;
+$black-70: #4c4c4c;
+$black-60: #666666;
+$black-50: #808080;
+$black-40: #999999;
+$black-30: #b2b2b2;
+$black-20: #cccccc;
+$black-10: #e5e5e5;
+$black-4: #f5f5f5;
+$red-70: #ff697a;
+$red-40: #ffa9b3;
+$skyBlue-70: #88c3fb;
+$skyBlue-40: #bbddfd;
+$eclecticBlue-70: #736fb9;
+$eclecticBlue-40: #afadd7;
+$statusGreen-70: #8af4b8;
+$statusGreen-40: #cdfae0;
+$statusYellow-70: #fcf599;
+$statusYellow-40: #fdf9c5;
+
+// BODY STYLES
+$body-bg: $white;
+$body-font-color:  	$black-90;
+$body-font-family:  $font-family-sans-serif;
+$body-font-weight:  $font-weight-normal;
+$body-font-style:   normal;
+$body-font-size:    17px;
+$body-line-height:  25px;
+$body-min-width:    300px;
+
+// COMPONENT STYLES
+$content-max-width: 1320px;
+$component-max-width: 1200px;
+
+// breakpoint definitions
+$xsmall:  300px;
+$small:   600px;
+$medium:  768px;
+$large:   992px;
+$xlarge:  1200px;
+$xxlarge: 1320px;
+
+// MaxValues
+$xsmallMax: $small - 1;
+$smallMax:  $medium - 1;
+$mediumMax: $large - 1;
+$largeMax:  $xlarge - 1;
+$xlargeMax: 10000px;
+
+// Grid
+$grid-gutter: percentage(1/47);
+$grid-gutter-max: 20px;
+
+//Layout
+$content-margin-side-mobile: 5%;
+$content-margin-side: 2.5%;
+$content-margin-side-max: 40px;
+$breakpoint-grid-max-width: 1400px;
+$content-max-width-with-margin: $breakpoint-grid-max-width + 2 * ($content-margin-side-max);
+
+
+// margins for content and sections
+$section_content_top: 33px;
+$section_margin_top_small: 60px;
+$section_margin_top_medium: 60px;
+$section_margin_top_large: 60px;
+$section_margin_top_xlarge: 80px;
+
+
+// margins for content and sections
+$spacing_content: 90px;
+$spacing_content_medium: 90px;
+$spacing_content_large: 120px;
+$spacing_content_xxlarge: 120px;
+
+// margins for slotted components
+$spacing_parent_to_slotted: 40px;
+

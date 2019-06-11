@@ -1,0 +1,39 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"jsx": "react",
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"noImplicitAny": false,
+		"sourceMap": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES5",
+		"lib": [
+			"es6",
+			"dom"
+		]
+	},
+	"awesomeTypescriptLoaderOptions": {
+		"useCache": true,
+		"reportFiles": [
+			"src/**/*.{ts,tsx}"
+		]
+	},
+	"typeRoots": [
+		"node_modules/@types",
+		"./src/types"
+	],
+	"types": [
+		"react",
+		"react-dom",
+		"jquery"
+	],
+	"exclude": [
+		"patterns",
+		"test",
+		"dist",
+		".tmp",
+		"**/*.spec.ts"
+	]
+}

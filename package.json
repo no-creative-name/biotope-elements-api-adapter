@@ -1,0 +1,47 @@
+{
+  "name": "biotope-elements-api-adapter",
+  "version": "1.0.0",
+  "description": "Provides an API adapter to connect CMS to biotope elements",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/no-creative-name/biotope-elements-api-adapter.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development gulp serve",
+    "build": "cross-env NODE_ENV=production gulp build"
+  },
+  "dependencies": {
+    "@biotope/element": "^3",
+    "@biotope/resource-loader": "^1.4.1",
+    "@types/node": "^11.13.8",
+    "@webcomponents/webcomponentsjs": "^2.2.1",
+    "ramda": "^0.26.0"
+  },
+  "devDependencies": {
+    "@biotope/build": "6.1.0-0",
+    "@types/mocha": "^5.2.6",
+    "@types/webcomponents.js": "^0.6.33",
+    "breakpoint-sass": "2.7.1",
+    "chai": "^4.2.0",
+    "commitizen": "^3.1.1",
+    "cross-env": "^5.2.0",
+    "himalaya": "^1.1.0",
+    "mocha": "^6.1.4",
+    "ramda-types": "^1.0.0",
+    "requirejs": "^2.3.6",
+    "rpgo": "3.0.0",
+    "sinon-chai": "^3.3.0",
+    "standard-version": "^5.0.2",
+    "ts-node": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/no-creative-name/biotope-elements-api-adapter/issues"
+  },
+  "homepage": "https://github.com/no-creative-name/biotope-elements-api-adapter#readme"
+}

@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/* global settings */
+@import "settings/settings";
+
+/* functions */
+@import "utilities/functions";
+
+
+.component-spacing-top {
+  margin-top: $spacing_content;
+  position: relative;
+  @include breakpoint($large) {
+    margin-top: $spacing_content_large;
+  }
+}
+
+.component-spacing-bottom {
+  margin-bottom: $spacing_content;
+  @include breakpoint($large) {
+    margin-bottom: $spacing_content_large;
+  }
+}
+
+
+.divider + .divider {
+  &::before {
+    content: '';
+    width: 100vw;
+    height: 1px;
+    background: $black-10;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.divider + .divider:not(.row) {
+  &::before {
+    top: -$spacing_content;
+  }
+  @include breakpoint($large) {
+    &::before {
+      top: -$spacing_content_large;
+    }
+  }
+}
+
+
+.component-slotted-first-spacing {
+  margin-top: $spacing_parent_to_slotted;
+  position: relative;
+}
+
+.component-slotted-last-spacing {
+  margin-bottom: $spacing_parent_to_slotted;
+}
+
+.component-slotted:not(.component-slotted-last-spacing) {
+  margin-bottom: $spacing_content;
+}
+
+.breadcrumb-wrapper {
+  padding: 20px 0;
+}
