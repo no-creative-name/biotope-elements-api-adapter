@@ -1,6 +1,6 @@
 import { Page } from "../Page";
 import createEZAdapter from "../apiAdapter/EZ/createEZAdapter";
-import createWPGraphQLAdapter from "../apiAdapter/WPGraphQL/createWPGraphQLAdapter";
+import createContentfulAdapter from "../apiAdapter/Contentful/createContentfulGraphQLAdapter";
 import performDataMapping from "../dataMapper/performDataMapping";
 import { generateWebComponentTags } from "./tagCreation/generateWebComponentTags";
 import createHtmlElementFromString from "./tagCreation/createHtmlElementFromString";
@@ -8,7 +8,7 @@ import { NormalizedContent } from "../NormalizedContent";
 
 const CMS_ADAPTER_MAP = {
   EZ: createEZAdapter(),
-  WPGraphQL: createWPGraphQLAdapter()
+  Contentful: createContentfulAdapter()
 };
 
 export const renderContentsToPage = async (pageId: number) => {
