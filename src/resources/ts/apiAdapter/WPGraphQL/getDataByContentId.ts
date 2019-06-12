@@ -5,13 +5,32 @@ const getDataByContentId = async (
   nestedLevel: number = 0
 ) => {
   const query = `
-  {
-    imageTextComponent(id: "4eCjYeA2qz696tqN2jQ5Bq") {
+    fragment fields on ImageTextComponent {
       image {
+        contentType
         title
-        url
-      },
+      }
       text
+    }
+
+    fragment stage on Stage {
+      backgroundImage {
+        url
+      }
+    }
+    {
+    pageTestGraphqlCollection {
+      items {
+        title
+        componentsCollection(limit: 10) {
+          items {
+            __typename
+            ...fields
+            __typename
+            ...stage
+          }
+        }
+      }
     }
   }
   `
@@ -32,8 +51,7 @@ const getDataByContentId = async (
 
   return {
     title: '',
-    breadcrumb: '',
-    children:[]
+    items:[]
   }
 };
 

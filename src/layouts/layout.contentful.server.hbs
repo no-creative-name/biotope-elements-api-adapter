@@ -1,0 +1,25 @@
+{{bioInclude 'layouts/includes/htmltag' }}
+
+<head>
+	<title>Test</title>
+	<link rel="stylesheet" href="{{bioEnv 'BIOTOPEBASE'}}resources/css/styles.css">
+</head>
+
+<body>
+	<script nomodule src="{{bioEnv 'RESOURCESBASE'}}resources/js/polyfills/object-assign.polyfill.js"></script>
+	<script nomodule src="{{bioEnv 'RESOURCESBASE'}}resources/js/polyfills/array-find.polyfill.js"></script>
+	<script nomodule src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"></script>
+	<script nomodule src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+	<script src="{{bioEnv 'RESOURCESBASE'}}resources/js/vendor/custom-elements-es5-adapter.js"></script>
+	<script src="{{bioEnv 'RESOURCESBASE'}}resources/js/polyfills/webcomponents-loader.js"></script>
+	<script src="{{bioEnv 'RESOURCESBASE'}}resources/js/head.configuration.js"></script>
+	<script>
+		biotope.configuration.set('data.staticResourcesBase', '{{bioEnv 'BIOTOPEBASE'}}resources/');
+	</script>
+	<script src="{{bioEnv 'RESOURCESBASE'}}resources/ts/server.js"></script>
+	<script>window.biotope.render({}, { versionUrl: '/api/ezp/v2/content/objects/1373/versions/1' })</script>
+	<main id="main"></main>
+	<footer></footer>
+</body>
+
+</html>
