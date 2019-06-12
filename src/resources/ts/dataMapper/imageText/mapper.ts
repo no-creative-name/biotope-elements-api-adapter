@@ -3,15 +3,18 @@ import { renameGeneralProps } from "../renameGeneralProps";
 import { DataMapper } from "../DataMapper";
 import { deleteProps } from "../deleteProps";
 
-export const leadTextMapper: DataMapper = normalizedData => {
+export const imageTextMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
-      ...normalizedData.data
+      ...renameGeneralProps(normalizedData.data, {
+        "image.fileName": "image.alt",
+        "richText.html": "text"
+      })
     },
     metaData: {
       ...normalizedData.metaData,
-      componentName: `XLeadText`,
-      fileUrl: generateComponentUrl(`components`, `XLeadText`)
+      componentName: `XImageText`,
+      fileUrl: generateComponentUrl(`components`, `XImageText`)
     }
   };
 
