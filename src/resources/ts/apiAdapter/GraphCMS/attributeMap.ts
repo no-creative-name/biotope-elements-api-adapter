@@ -15,7 +15,7 @@ export const attributeMap = {
   primaryCTA: `{
           text
           icon
-          link
+          linkExternal
           linkLabel
           linkTarget
       }`

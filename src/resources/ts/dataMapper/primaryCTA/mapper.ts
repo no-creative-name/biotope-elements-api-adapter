@@ -8,7 +8,8 @@ export const primaryCtaMapper: DataMapper = normalizedData => {
     data: {
       ...renameGeneralProps(normalizedData.data, {
         linkLabel: "link-label",
-        linkTarget: "link-target"
+        linkTarget: "link-target",
+        linkExternal: "link"
       })
     },
     metaData: {
