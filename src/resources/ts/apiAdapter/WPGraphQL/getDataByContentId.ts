@@ -1,24 +1,27 @@
+import { access } from "fs";
+
 const getDataByContentId = async (
   contentId: number,
   nestedLevel: number = 0
 ) => {
   const query = `
   {
-    imageTextComponent(id: "4eCjYeA2qz696tqN2jQ5Bq" ) {
+    imageTextComponent(id: "4eCjYeA2qz696tqN2jQ5Bq") {
       image {
         title
-      }
+        url
+      },
+      text
     }
   }
   `
-  console.log("TCL: query", query)
-
 
   fetch(CMSAPI, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': `Bearer ${ACCESSTOKEN}`
     },
     body: JSON.stringify({query})
   })

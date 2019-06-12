@@ -1,3 +1,5 @@
+declare var ACCESSTOKEN: string;
+declare var SPACE_ID: string;
 declare var CMSAPI: string;
 declare var CMS_ADAPTER: string;
 declare var BIOTOPEBASE: string;
