@@ -17,6 +17,7 @@
     "@biotope/resource-loader": "^1.4.1",
     "@types/node": "^11.13.8",
     "@webcomponents/webcomponentsjs": "^2.2.1",
+    "graphql": "^14.3.1",
     "ramda": "^0.26.0"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "chai": "^4.2.0",
     "commitizen": "^3.1.1",
     "cross-env": "^5.2.0",
+    "graphql-tag": "^2.10.1",
     "himalaya": "^1.1.0",
     "mocha": "^6.1.4",
     "ramda-types": "^1.0.0",
