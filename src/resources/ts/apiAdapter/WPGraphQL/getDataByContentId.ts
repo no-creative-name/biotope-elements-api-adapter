@@ -3,11 +3,13 @@ const getDataByContentId = async (
   nestedLevel: number = 0
 ) => {
   const query = `
-    {
-      pageBy(id: "cGFnZToy") {
-        slug
+  {
+    imageTextComponent(id: "4eCjYeA2qz696tqN2jQ5Bq" ) {
+      image {
+        title
       }
     }
+  }
   `
   console.log("TCL: query", query)
 
