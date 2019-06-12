@@ -5,8 +5,12 @@ import { generateWebComponentTags } from "./tagCreation/generateWebComponentTags
 import createHtmlElementFromString from "./tagCreation/createHtmlElementFromString";
 import { NormalizedContent } from "../NormalizedContent";
 
+const CMS_ADAPTER_MAP = {
+  EZ: createEZAdapter()
+};
+
 export const renderContentsToPage = async (pageId: number) => {
-  const apiAdapter = createEZAdapter();
+  const apiAdapter = CMS_ADAPTER_MAP[CMS_ADAPTER];
 
   const normalizedPage: Page = await apiAdapter.getPageData(pageId);
 
