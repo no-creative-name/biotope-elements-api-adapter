@@ -3,8 +3,12 @@ import setupResourceLoader from "./resourceLoader";
 import { renderContentsToPage } from "./render/renderContentsToPage";
 
 const init = async (data: any, options: any) => {
-  const pageId: number = options.versionUrl.split("/")[6];
-
+  let pageId: number;
+  if (options.versionUrl) {
+    pageId = options.versionUrl.split("/")[6];
+  } else {
+    pageId = options.pageId;
+  }
   await renderContentsToPage(pageId);
 
   setupResourceLoader();
