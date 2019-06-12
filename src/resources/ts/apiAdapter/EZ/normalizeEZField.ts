@@ -16,7 +16,7 @@ export const normalizeEZField = async (
   contentObject: any,
   fieldName: string,
   fieldValue: any,
-  pageId: number
+  pageId: string
 ) => {
   switch (ezFieldType) {
     case "ezselection":

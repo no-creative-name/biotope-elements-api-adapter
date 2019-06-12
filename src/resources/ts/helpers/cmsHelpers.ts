@@ -75,7 +75,7 @@ export const getContentId = (locationId: number) => {
     .catch(err => err);
 };
 
-export const getLocation = (contentId: number) => {
+export const getLocation = (contentId: string) => {
   const url = `${CMSAPI}/api/ezp/v2/content/objects/${contentId}/locations`;
   return fetch(url, {
     headers: {
@@ -94,7 +94,7 @@ export const getLocation = (contentId: number) => {
     .catch(err => err);
 };
 
-export const getObjectForContentId = (contentId: number) => {
+export const getObjectForContentId = (contentId: string) => {
   const url = `${CMSAPI}/api/ezp/v2/content/objects/${contentId}`;
   return fetch(url, {
     headers: {
@@ -112,7 +112,7 @@ export const getObjectForContentId = (contentId: number) => {
     .catch(err => err);
 };
 
-export const getContentTypeObjectForContentId = (contentId: number) => {
+export const getContentTypeObjectForContentId = (contentId: string) => {
   const url = `${CMSAPI}/api/ezp/v2/content/types/${contentId}`;
   return fetch(url, {
     headers: {
@@ -130,7 +130,7 @@ export const getContentTypeObjectForContentId = (contentId: number) => {
     .catch(err => err);
 };
 
-export const getContentForContentId = async (contentId: number) => {
+export const getContentForContentId = async (contentId: string) => {
   try {
     const json = await getObjectForContentId(contentId);
     const content = json.Content.CurrentVersion.Version.Fields.field;

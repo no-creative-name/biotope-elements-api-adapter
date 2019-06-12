@@ -4,7 +4,7 @@ import getDataByContentId from "./getDataByContentId";
 
 const createEZAdapter = (): CMSAdapter => {
   return {
-    getPageData: async (pageId: number) => {
+    getPageData: async (pageId: string) => {
       const pageData: EZPage = await getDataByContentId(pageId);
 
       return {

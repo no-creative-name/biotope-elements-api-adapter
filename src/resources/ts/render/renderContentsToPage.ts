@@ -11,7 +11,7 @@ const CMS_ADAPTER_MAP = {
   Contentful: createContentfulAdapter()
 };
 
-export const renderContentsToPage = async (pageId: number) => {
+export const renderContentsToPage = async (pageId: string) => {
   const apiAdapter = CMS_ADAPTER_MAP[CMS_ADAPTER];
 
   const normalizedPage: Page = await apiAdapter.getPageData(pageId);

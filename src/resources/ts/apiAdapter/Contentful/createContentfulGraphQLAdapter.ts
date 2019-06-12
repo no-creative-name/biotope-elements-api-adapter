@@ -4,7 +4,7 @@ import getDataByContentId from "./getDataByContentId";
 
 const createContentfulGraphQLAdapter = (): CMSAdapter => {
   return {
-    getPageData: async (pageId: number) => {
+    getPageData: async (pageId: string) => {
       const pageData: Page = await getDataByContentId(pageId);
 
       return {

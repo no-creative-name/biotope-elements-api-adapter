@@ -20,6 +20,7 @@ import { routingTeaserMapper } from './routingTeaser/mapper';
 import { routingTeaserItemMapper } from './routingTeaserItem/mapper';
 import { teaserRowMapper } from './teaserRow/mapper';
 import { teaserRowItemMapper } from './teaserRowItem/mapper';
+import { imageTextMapper } from './imageText/mapper'
 
 const contentTypeComponentMap = {
     'accordion': accordionMapper,
@@ -39,6 +40,7 @@ const contentTypeComponentMap = {
     'stage': stageMapper,
     'tab_container': tabContainerMapper,
     'tab_item': tabItemMapper,
+    'ImageTextComponent': imageTextMapper,
     'teaser_routing': routingTeaserMapper,
     'teaser_routing_item': routingTeaserItemMapper,
     'teaser_row': teaserRowMapper,

@@ -1,6 +1,6 @@
 import { getFieldFromName, getObjectForContentId } from "./cmsHelpers";
 
-export const getDataForFile = async (contentId: number) => {
+export const getDataForFile = async (contentId: string) => {
     const contentObject = await getObjectForContentId(contentId);
     const contentFields = contentObject.Content.CurrentVersion.Version.Fields.field;
 

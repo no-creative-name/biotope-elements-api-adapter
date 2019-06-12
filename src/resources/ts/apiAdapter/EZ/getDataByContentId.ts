@@ -4,7 +4,7 @@ import { getDataForFile } from '../../helpers/getDataForFile';
 
 let pageId;
 
-const getDataByContentId = async (contentId: number, nestedLevel: number = 0) => {
+const getDataByContentId = async (contentId: string, nestedLevel: number = 0) => {
 	if (nestedLevel == 0) {
 		pageId = contentId;
 	}
