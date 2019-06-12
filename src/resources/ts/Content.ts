@@ -1,14 +1,12 @@
 export interface Content {
-    metaData: MetaData,
-    data: ContentData
+  metaData: MetaData;
+  data: ContentData;
 }
 interface MetaData {
-    componentIdentifier: string,
-    componentName: string,
-    id: number,
-    fileUrl: string
+  componentIdentifier: string;
+  id: number;
 }
 
 interface ContentData {
-    children?: Content[]
+  children?: Content[];
 }
