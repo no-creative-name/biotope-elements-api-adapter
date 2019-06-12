@@ -11,5 +11,12 @@ export const attributeMap = {
   leadText: `{
         heading
         text
-    }`
+    }`,
+  primaryCTA: `{
+          text
+          icon
+          link
+          linkLabel
+          linkTarget
+      }`
 };

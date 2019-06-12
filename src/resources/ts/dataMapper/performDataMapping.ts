@@ -24,7 +24,8 @@ import { teaserRowItemMapper } from "./teaserRowItem/mapper";
 
 const contentTypeComponentMap = {
   leadText: leadTextMapper,
-  imageText: imageTextMapper
+  imageText: imageTextMapper,
+  primaryCTA: primaryCtaMapper
 };
 
 export const mapData = content => {
