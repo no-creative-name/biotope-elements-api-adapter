@@ -1,4 +1,4 @@
-import { NormalizedContent } from "../NormalizedContent";
+import { Content } from "../Content";
 import { accordionMapper } from "./accordion/mapper";
 import { accordionItemMapper } from "./accordionItem/mapper";
 import { downloadListMapper } from "./downloadList/mapper";
@@ -21,6 +21,7 @@ import { routingTeaserMapper } from "./routingTeaser/mapper";
 import { routingTeaserItemMapper } from "./routingTeaserItem/mapper";
 import { teaserRowMapper } from "./teaserRow/mapper";
 import { teaserRowItemMapper } from "./teaserRowItem/mapper";
+import { MappedContent } from "../MappedContent";
 
 const contentTypeComponentMap = {
   leadText: leadTextMapper,
@@ -39,7 +40,7 @@ export const mapData = content => {
 };
 
 const updateDataForComponent = () => {
-  return (content: NormalizedContent) => {
+  return (content: Content) => {
     let mappedData = mapData(content);
 
     return mappedData;
