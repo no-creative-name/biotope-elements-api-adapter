@@ -1,11 +1,11 @@
 import { CMSAdapter } from "../CMSAdapter";
 import getDataByContentId from "./getDataByContentId";
-import { GraphCMSPage } from "./interfaces/GraphCMSPage";
+import { Page } from "../../interfaces/Page";
 
 const createEZAdapter = (): CMSAdapter => {
   return {
     getPageData: async (pageId: number) => {
-      const pageData: GraphCMSPage = await getDataByContentId(pageId);
+      const pageData: Page = await getDataByContentId(pageId);
 
       return {
         title: pageData.title,

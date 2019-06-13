@@ -1,3 +1,3 @@
-import { Content } from "../Content";
+import { Content } from "../interfaces/Content";
 
 export type DataMapper = (content: Content) => Content;
