@@ -1,54 +1,25 @@
+# Biotope Elements API Adapter
 
-![GitHub tag](https://img.shields.io/github/tag/biotope/biotope-boilerplate.svg) ![GitHub issues](https://img.shields.io/github/issues-raw/biotope/biotope-boilerplate.svg) ![GitHub PRs](https://img.shields.io/github/issues-pr-raw/biotope/biotope-boilerplate.svg)
-![GitHub](https://img.shields.io/github/license/biotope/biotope-boilerplate.svg)
-![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/y/biotope/biotope-boilerplate.svg)
+## Definition
 
+This repo functions as a middleware between CMS and Biotope. It handles data fetching, normalization and mapping. Furthermore it renders the HTML tags for the Biotope Elements.
 
-# Biotope is a framework which enables you to develop scalabale, platform-agnostic frontend component ecosystems
-
-## Definition Ecosystem vs. Ecosystem Framework:
-
-- A component ecosystem is a pool of components which can be used in any combination to build your websites or web applications user interface. The same components can be used in 1-n projects.
-
-- An ecosystem framework helps you building such an ecosystem and makes sure all components play well with each other, you get an overview over all components in the pooland information how to use them.
-
-## It helps developers to:
-- Build your UI components once and use them together with vanilla javascript or the js framework of your choice, in single page applications as well as in traditional server side rendered cms projects.
-- Keep focus on developing components, the architecture and dev environment is provided by Biotope.
-- Easy start, love to use it.
-- Build projects and design system styleguides with a single code source.
-- Easily ensure high quality standards for the whole library even when developed by multiple suppliers.
-- Make it easy to work with a team of many developers, all providing components to the library.
-- Create your own ui library to choose from in your projects.
-
-
-## It helps companies to:
-- Create a UI component library which can be maintained in a central place.
-- Versioning enables you to use all ui-components independently in different projects.
-- Ensure a consistent UI across all your projects.
-- Let multiple partners contribute to the ui library without compatiblity & quality issues. Bring their design system to live. Real usable code, no dummy html components in a seperate styleguide tool.
-- Doesnt matter how big the component library gets. Projects only use components they need. So performance stays high.
-- Maintain and extend the ui library over years to avoid getting out-of-date and having to start from scratch again.
-
-
-## It helps designers to:
-- Showcase their design systems in an always up to date living styleguide.
-- Have a single point of truth for the components available how they work and how they look.
-
-
-## Developing Biotope
-- We keep focus on our vision.
-- Our goal is to ensure things are interoperable between Biotope instances, beside that Biotope should be as flexible as possible.
-- Instead of one monolythic framework we try to split up Biotope in lightweight services each with a dedicated goal.
-
-
-## Installation
-You can install the biotope boilerplate with it's cli using npx:
-`npx @biotope/cli init <your-project-name>` then change directories with to `./<your-project-name>`
-
-Or cloning this repo and run `npm install`
+Adapters for ezCMS, Contentful and GraphCMS are already included.
 
 ## Documentation
-You can find the documentation [here](https://boilerplate.biotope.sh).
 
-In order to contribute to the documentation you have to start a local server in `./docs`, then start editing the files in docs.
+The functionality is seperated into multiple layers:
+
+- Data Fetching & Normalization
+- Data Mapping
+- Rendering
+
+### Data Fetching & Normalization
+
+The actual adapter that handles fetching and normalization of data from the CMS is located under src/resources/ts/apiAdapter/. Each CMS has its adapter located in a respective folder.
+
+Let's take ezCMS as an example:
+The function [createEZAdapter](src/resources/ts/apiAdapter/EZ/createEZAdapter.ts) returns a function getPageData, which returns the data for the whole current web page.
+
+In devvars.env you can set the type of CMS (CMS_ADAPTER) and the CMS' API endpoint (CMSAPI).
+The possible options for CMS_ADAPTER are defined in the CMS_ADAPTER_MAP in [renderContentsToPage.ts](src/resources/ts/render/renderContentsToPage.ts).

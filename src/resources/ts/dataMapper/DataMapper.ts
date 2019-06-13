@@ -1,3 +1,3 @@
-import { NormalizedContent } from '../NormalizedContent';
+import { Content } from "../interfaces/Content";
 
-export type DataMapper = (content: NormalizedContent) => NormalizedContent; 
+export type DataMapper = (content: Content) => Content;
