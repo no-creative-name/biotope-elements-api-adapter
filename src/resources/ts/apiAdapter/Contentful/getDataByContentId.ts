@@ -5,7 +5,6 @@ const getDataByContentId = async (
   contentId: string,
   nestedLevel: number = 0
 ) => {
-  console.log("TCL: contentId", contentId)
   const query = `
   fragment fields on ImageTextComponent {
     image {
@@ -36,7 +35,6 @@ const getDataByContentId = async (
     }
   }
   `
-  console.log("TCL: query", query)
   let page: string;
   const normalizedItems = await fetch(CMSAPI, {
     method: 'POST',
@@ -49,7 +47,6 @@ const getDataByContentId = async (
   })
   .then(response => response.json())
   .then((responseJson) => {
-    console.log(responseJson)
     page = responseJson.data.pageTestGraphql.title;
     const items = responseJson.data.pageTestGraphql.componentsCollection.items;
     return items.map(item => {
