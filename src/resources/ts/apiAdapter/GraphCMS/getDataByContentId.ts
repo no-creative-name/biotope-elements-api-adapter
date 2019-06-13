@@ -1,14 +1,14 @@
 import ApolloClient, { gql } from "apollo-boost";
 import { attributeMap } from "./attributeMap";
 
+const client = new ApolloClient({
+  uri: CMSAPI
+});
+
 const getDataByContentId = async (
   contentId: number,
   nestedLevel: number = 0
 ) => {
-  const client = new ApolloClient({
-    uri: CMSAPI
-  });
-
   let pageData = {
     title: "",
     children: []
@@ -47,24 +47,7 @@ const getDataByContentId = async (
     });
   let normalizedChildrenData = await Promise.all(
     pageData.children.map(async child => {
-      return await client
-        .query({
-          query: getComponentQuery(
-            child.componentIdentifier,
-            child.id,
-            attributeMap[child.componentIdentifier]
-          )
-        })
-        .then(result => {
-          delete result.data[child.componentIdentifier].__typename;
-          return {
-            data: result.data[child.componentIdentifier],
-            metaData: {
-              componentIdentifier: child.componentIdentifier,
-              id: child.id
-            }
-          };
-        });
+      return await normalizeChildData(child);
     })
   );
 
@@ -86,4 +69,26 @@ const getComponentQuery = (
   }
 `;
 };
+
+const normalizeChildData = child => {
+  return client
+    .query({
+      query: getComponentQuery(
+        child.componentIdentifier,
+        child.id,
+        attributeMap[child.componentIdentifier]
+      )
+    })
+    .then(result => {
+      delete result.data[child.componentIdentifier].__typename;
+      return {
+        data: result.data[child.componentIdentifier],
+        metaData: {
+          componentIdentifier: child.componentIdentifier,
+          id: child.id
+        }
+      };
+    });
+};
+
 export default getDataByContentId;
