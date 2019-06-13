@@ -1,12 +1,14 @@
 import { Page } from "../Page";
 import createEZAdapter from "../apiAdapter/EZ/createEZAdapter";
+import createGraphCMSAdapter from "../apiAdapter/GraphCMS/createGraphCMSAdapter";
 import performDataMapping from "../dataMapper/performDataMapping";
 import { generateWebComponentTags } from "./tagCreation/generateWebComponentTags";
 import createHtmlElementFromString from "./tagCreation/createHtmlElementFromString";
 import { NormalizedContent } from "../NormalizedContent";
 
 const CMS_ADAPTER_MAP = {
-  EZ: createEZAdapter()
+  EZ: createEZAdapter(),
+  GraphCMS: createGraphCMSAdapter()
 };
 
 export const renderContentsToPage = async (pageId: number) => {
