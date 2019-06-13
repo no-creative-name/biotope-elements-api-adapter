@@ -47,8 +47,6 @@ const updateDataForComponent = () => {
 };
 
 const performDataMapping = async (contents: any) => {
-  console.log(contents);
-
   return contents.children.map(updateDataForComponent());
 };
 
