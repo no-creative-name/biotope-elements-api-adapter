@@ -1,6 +1,6 @@
 import { CMSAdapter } from "../CMSAdapter";
-import { EZPage } from "./interfaces/EZPage";
 import getDataByContentId from "./getDataByContentId";
+import { EZPage } from "./interfaces/EZPage";
 
 const createEZAdapter = (): CMSAdapter => {
   return {

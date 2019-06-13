@@ -1,14 +1,14 @@
 import {
-  getContentTypeAndId,
-  getLocation,
-  getSystemUrl,
-  getContentForContentId,
-  getFieldFromName,
-  convertTimestampToDDMMYYYY,
   convertRichTextToJSON,
-  getContentTypeObjectForContentId,
+  convertTimestampToDDMMYYYY,
+  getContentForContentId,
   getContentId,
-  getObjectForContentId
+  getContentTypeAndId,
+  getContentTypeObjectForContentId,
+  getFieldFromName,
+  getLocation,
+  getObjectForContentId,
+  getSystemUrl
 } from "../../helpers/cmsHelpers";
 
 export const normalizeEZField = async (

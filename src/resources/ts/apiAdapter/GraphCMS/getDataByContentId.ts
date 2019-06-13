@@ -1,5 +1,4 @@
-import ApolloClient from "apollo-boost";
-import { gql } from "apollo-boost";
+import ApolloClient, { gql } from "apollo-boost";
 import { attributeMap } from "./attributeMap";
 
 const getDataByContentId = async (

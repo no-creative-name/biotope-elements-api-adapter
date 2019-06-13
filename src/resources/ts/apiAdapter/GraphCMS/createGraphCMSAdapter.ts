@@ -1,5 +1,4 @@
 import { CMSAdapter } from "../CMSAdapter";
-import { Page } from "../../Page";
 import getDataByContentId from "./getDataByContentId";
 import { GraphCMSPage } from "./interfaces/GraphCMSPage";
 
