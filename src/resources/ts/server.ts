@@ -9,7 +9,6 @@ const init = async (data: any, options: any) => {
   } else {
     pageId = options.pageId;
   }
-
   await renderContentsToPage(pageId);
 
   setupResourceLoader();
