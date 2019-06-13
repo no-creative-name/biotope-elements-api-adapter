@@ -1,5 +1,6 @@
 export const attributeMap = {
-  imageText: `{
+  imageText: {
+    attributes: `{
         image {
             fileName
             url
@@ -7,16 +8,52 @@ export const attributeMap = {
         richText {
             html
         }
-    }`,
-  leadText: `{
-        heading
-        text
-    }`,
-  primaryCTA: `{
-          text
-          icon
-          linkExternal
-          linkLabel
-          linkTarget
-      }`
+    }`
+  },
+  leadText: {
+    attributes: `{
+    heading
+    text
+}`
+  },
+  primaryCTA: {
+    attributes: `{
+    text
+    icon
+    linkExternal
+    linkLabel
+    linkTarget
+}`
+  },
+  accordionContainer: {
+    attributes: `{
+    title
+    text
+    openFirstItem
+    accordionItems {
+        id
+    }
+}
+`,
+    children: {
+      fieldIdentifier: "accordionItems",
+      componentIdentifier: "accordionItem"
+    }
+  },
+  accordionItem: {
+    attributes: `{
+          heading
+          component {
+              id
+          }
+      }`,
+    childOnly: true,
+    children: {
+      fieldIdentifier: "component",
+      componentIdentifier: "component"
+    }
+  },
+  component: {
+    childOnly: true
+  }
 };
