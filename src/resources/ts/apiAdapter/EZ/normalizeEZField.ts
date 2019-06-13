@@ -9,7 +9,7 @@ import {
   getLocation,
   getObjectForContentId,
   getSystemUrl
-} from "../../helpers/cmsHelpers";
+} from "./helpers/ezHelpers";
 
 export const normalizeEZField = async (
   ezFieldType: string,

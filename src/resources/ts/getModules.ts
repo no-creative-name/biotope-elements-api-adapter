@@ -1,7 +1,7 @@
 import {
   getObjectForContentId,
   getSubItemsForMainLocation
-} from "./helpers/cmsHelpers";
+} from "./apiAdapter/EZ/helpers/ezHelpers";
 
 export const getModules = async pageId => {
   const pageData = await getObjectForContentId(pageId);

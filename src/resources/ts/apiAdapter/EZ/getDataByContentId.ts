@@ -2,8 +2,8 @@ import {
   getContentTypeAndId,
   getObjectForContentId,
   getSubItemsForMainLocation
-} from "../../helpers/cmsHelpers";
-import { getDataForFile } from "../../helpers/getDataForFile";
+} from "./helpers/ezHelpers";
+import { getDataForFile } from "./helpers/getDataForFile";
 import { normalizeEZField } from "./normalizeEZField";
 
 let pageId;
