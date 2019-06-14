@@ -52,6 +52,7 @@ export const attributeMap = {
     attributes: `{
       headline
       claim
+      secondaryColor
       image {
         url
         fileName
