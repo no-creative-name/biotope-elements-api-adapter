@@ -7,7 +7,8 @@ export const accordionContainerMapper: DataMapper = normalizedData => {
     data: {
       ...normalizedData.data,
       ...mapChildren(normalizedData.data),
-      class: "component-spacing-top component-spacing-bottom"
+      class:
+        "component-spacing-top component-spacing-bottom row row--reducedWidth"
     },
     metaData: {
       ...normalizedData.metaData,

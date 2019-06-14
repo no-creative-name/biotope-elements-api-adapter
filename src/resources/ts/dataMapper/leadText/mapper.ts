@@ -5,7 +5,8 @@ export const leadTextMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
       ...normalizedData.data,
-      class: "component-spacing-top component-spacing-bottom"
+      class:
+        "component-spacing-top component-spacing-bottom row row--reducedWidth"
     },
     metaData: {
       ...normalizedData.metaData,
