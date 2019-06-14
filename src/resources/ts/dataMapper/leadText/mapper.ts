@@ -4,7 +4,8 @@ import { DataMapper } from "../DataMapper";
 export const leadTextMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
-      ...normalizedData.data
+      ...normalizedData.data,
+      class: "component-spacing-top component-spacing-bottom"
     },
     metaData: {
       ...normalizedData.metaData,

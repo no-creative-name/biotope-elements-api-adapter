@@ -7,7 +7,8 @@ export const contentBoxMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
       ...renameGeneralProps(normalizedData.data, { title: "headline" }),
-      ...mapChildren(normalizedData.data)
+      ...mapChildren(normalizedData.data),
+      class: "component-spacing-top component-spacing-bottom"
     },
     metaData: {
       ...normalizedData.metaData,

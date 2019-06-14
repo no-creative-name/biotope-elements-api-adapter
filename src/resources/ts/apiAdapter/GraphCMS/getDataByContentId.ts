@@ -121,6 +121,14 @@ const getDataForMeta = meta => {
         data["children"].concat(childrenData);
       }
 
+      Object.keys(data).map(oldAttributeName => {
+        const newAttributeName = convertCamelCaseToDash(oldAttributeName);
+        if (newAttributeName !== oldAttributeName) {
+          data[newAttributeName] = data[oldAttributeName];
+          delete data[oldAttributeName];
+        }
+      });
+
       return {
         data: data,
         metaData: {
@@ -183,6 +191,10 @@ const generateChildrenByAttributes = (slotAttributes, parentData) => {
     };
     return grandChildData;
   });
+};
+
+const convertCamelCaseToDash = camelCase => {
+  return camelCase.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 };
 
 export default getDataByContentId;

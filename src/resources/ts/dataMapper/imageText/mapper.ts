@@ -8,7 +8,7 @@ export const imageTextMapper: DataMapper = normalizedData => {
     data: {
       ...renameGeneralProps(normalizedData.data, {
         "image.fileName": "image.alt",
-        "richText.html": "text"
+        "rich-text.html": "text"
       })
     },
     metaData: {
