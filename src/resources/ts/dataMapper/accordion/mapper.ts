@@ -4,20 +4,17 @@ import { DataMapper } from "../DataMapper";
 import { mapChildren } from "../mapChildren";
 
 export const accordionMapper: DataMapper = (normalizedData) => {
-    const children = normalizedData.data.children;
-    if(children.length) {
-        children[0].data['opened'] = normalizedData.data['open-first-item'];
-        children[children.length - 1].data['add-bottom-line'] = true;
-    }
+    const children = normalizedData.data;
+
     const mappedData = {
         data: {
             ...renameGeneralProps(normalizedData.data, {
-                'title': 'heading', 
-                'link-external': 'link-url',
-                'link-internal': 'link-url',
-                'link-title': 'link-label'
+                'title': 'heading',
+                'description': 'text',
+                'firstItemOpen': 'open-first-item',
+                'accordionItemsCollection.items': 'children'
             }),
-            ...mapChildren(normalizedData.data)
+            ...mapChildren(children)
         },
         metaData: {
             ...normalizedData.metaData,

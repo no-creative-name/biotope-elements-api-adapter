@@ -5,6 +5,7 @@
 // }
 
 export interface NormalizedContent {
+    [x: string]: any;
     metaData: MetaData,
     data: ContentData
 }
@@ -16,5 +17,7 @@ interface MetaData {
 }
 
 interface ContentData {
+    length: any;
+    accordionItemsCollection: any;
     children?: NormalizedContent[]
 }
