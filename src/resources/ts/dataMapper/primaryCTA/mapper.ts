@@ -19,5 +19,8 @@ export const primaryCtaMapper: DataMapper = normalizedData => {
     }
   };
   mappedData.data.icon = mappedData.data.icon.toLowerCase();
+  mappedData.data["link-target"] =
+    mappedData.data["link-target"] == true ? "_blank" : "_self";
+
   return mappedData;
 };
