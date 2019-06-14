@@ -19,8 +19,6 @@ export const teaserComponentMapper: DataMapper = (normalizedData) => {
             fileUrl: generateComponentUrl(`components`, `XTeaserRow`)
         },
     }
-    // mappedData.data.items = [].concat(mappedData.data.teaserItem)
-
 
     return mappedData;
 }
