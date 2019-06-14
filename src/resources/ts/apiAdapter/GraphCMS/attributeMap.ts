@@ -25,6 +25,29 @@ export const attributeMap = {
     linkTarget
 }`
   },
+  contentBox: {
+    attributes: `
+    {
+      title
+      dropdown {
+        id
+      }
+    }`,
+    children: {
+      fieldIdentifier: "dropdown",
+      componentIdentifier: "dropdown"
+    }
+  },
+  dropdown: {
+    attributes: `{
+      labelText
+      dropdownOptions {
+        label
+        value
+      }
+    }`,
+    childOnly: true
+  },
   stage: {
     attributes: `{
       headline
