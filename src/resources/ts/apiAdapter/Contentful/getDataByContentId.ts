@@ -39,7 +39,6 @@ const getDataByContentId = async (
     }
   }
   `
-  console.log("Console Log: GraphQL Query", query)
   let page: string;
   const normalizedItems = await fetch(CMSAPI, {
     method: 'POST',
