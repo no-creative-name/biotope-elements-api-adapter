@@ -21,7 +21,7 @@ const getDataByContentId = async (
         headline
         url
         linklabel
-
+        text
       }
     }
   }
