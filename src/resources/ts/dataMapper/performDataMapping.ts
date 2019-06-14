@@ -5,6 +5,7 @@ import { imageTextMapper } from "./imageText/mapper";
 import { accordionContainerMapper } from "./accordionContainer/mapper";
 import { accordionItemMapper } from "./accordionItem/mapper";
 import { contentBoxMapper } from "./contentBox/mapper";
+import { stageMapper } from "./stage/mapper";
 
 const contentTypeComponentMap = {
   leadText: leadTextMapper,
@@ -12,7 +13,8 @@ const contentTypeComponentMap = {
   primaryCTA: primaryCtaMapper,
   accordionContainer: accordionContainerMapper,
   accordionItem: accordionItemMapper,
-  contentBox: contentBoxMapper
+  contentBox: contentBoxMapper,
+  stage: stageMapper
 };
 export const mapData = content => {
   let componentMapper =

@@ -25,13 +25,15 @@ export const attributeMap = {
     linkTarget
 }`
   },
-  contentBox: {
+  stage: {
     attributes: `{
-            title
-            text
-            labelText
-            countrySelection
-        }`
+      headline
+      claim
+      image {
+        url
+        fileName
+      }
+    }`
   },
   accordionContainer: {
     attributes: `{
