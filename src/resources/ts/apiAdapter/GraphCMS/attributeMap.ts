@@ -25,16 +25,25 @@ export const attributeMap = {
     linkTarget
 }`
   },
+  stage: {
+    attributes: `{
+      headline
+      claim
+      image {
+        url
+        fileName
+      }
+    }`
+  },
   accordionContainer: {
     attributes: `{
-    title
-    text
-    openFirstItem
-    accordionItems {
-        id
-    }
-}
-`,
+        title
+        text
+        openFirstItem
+        accordionItems {
+            id
+        }
+    }`,
     children: {
       fieldIdentifier: "accordionItems",
       componentIdentifier: "accordionItem"

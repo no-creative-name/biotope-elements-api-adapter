@@ -4,15 +4,18 @@ import { leadTextMapper } from "./leadText/mapper";
 import { imageTextMapper } from "./imageText/mapper";
 import { accordionContainerMapper } from "./accordionContainer/mapper";
 import { accordionItemMapper } from "./accordionItem/mapper";
+import { contentBoxMapper } from "./contentBox/mapper";
+import { stageMapper } from "./stage/mapper";
 
 const contentTypeComponentMap = {
   leadText: leadTextMapper,
   imageText: imageTextMapper,
   primaryCTA: primaryCtaMapper,
   accordionContainer: accordionContainerMapper,
-  accordionItem: accordionItemMapper
+  accordionItem: accordionItemMapper,
+  contentBox: contentBoxMapper,
+  stage: stageMapper
 };
-
 export const mapData = content => {
   let componentMapper =
     contentTypeComponentMap[content.metaData.componentIdentifier];
