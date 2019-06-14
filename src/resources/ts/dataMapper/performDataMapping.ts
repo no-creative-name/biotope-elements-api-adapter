@@ -21,6 +21,7 @@ import { routingTeaserMapper } from "./routingTeaser/mapper";
 import { routingTeaserItemMapper } from "./routingTeaserItem/mapper";
 import { teaserRowMapper } from "./teaserRow/mapper";
 import { teaserRowItemMapper } from "./teaserRowItem/mapper";
+import { dropwdownMapper } from "./dropdown/mapper";
 
 const contentTypeComponentMap = {
   leadText: leadTextMapper,
