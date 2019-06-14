@@ -7,7 +7,7 @@ export const dropdownMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
       ...renameGeneralProps(normalizedData.data, {
-        dropdownOptions: "options"
+        "dropdown-options": "options"
       })
     },
     metaData: {
