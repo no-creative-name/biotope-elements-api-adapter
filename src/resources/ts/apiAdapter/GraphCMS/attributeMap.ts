@@ -48,6 +48,16 @@ export const attributeMap = {
     }`,
     childOnly: true
   },
+  stage: {
+    attributes: `{
+      headline
+      claim
+      image {
+        url
+        fileName
+      }
+    }`
+  },
   accordionContainer: {
     attributes: `{
         title
