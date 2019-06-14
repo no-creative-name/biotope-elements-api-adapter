@@ -21,7 +21,7 @@ import { routingTeaserItemMapper } from './routingTeaserItem/mapper';
 import { teaserRowMapper } from './teaserRow/mapper';
 import { teaserRowItemMapper } from './teaserRowItem/mapper';
 import { imageTextMapper } from './imageText/mapper'
-import { debug } from 'util';
+import { teaserComponentMapper } from './teaserComponent/mapper'
 
 const contentTypeComponentMap = {
     'article_tiles': articleTileMapper,
@@ -42,6 +42,7 @@ const contentTypeComponentMap = {
     'ImageTextComponent': imageTextMapper,
     'AccordionComponent': accordionMapper,
     'AccordionItemComponent': accordionItemMapper,
+    'TeaserComponent' : teaserComponentMapper,
     'teaser_routing': routingTeaserMapper,
     'teaser_routing_item': routingTeaserItemMapper,
     'teaser_row': teaserRowMapper,

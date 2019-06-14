@@ -35,6 +35,17 @@ const getDataByContentId = async (
       }
     }
   }
+
+  fragment teaser on TeaserComponent {
+    heading
+    teaserItemsCollection {
+      items {
+        headline
+        url
+        linklabel
+        text
+      }
+    }
   {
     pageTestGraphql(id: "${contentId}") {
         title
@@ -44,11 +55,14 @@ const getDataByContentId = async (
            ...imageText
            __typename
            ...accordion
+           __typename
+           ...teaser
         }
       }
     }
   }
   `
+  console.log("Console Log: GraphQL Query", query)
   let page: string;
   const normalizedItems = await fetch(CMSAPI, {
     method: 'POST',
