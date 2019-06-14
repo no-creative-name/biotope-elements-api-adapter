@@ -26,12 +26,27 @@ export const attributeMap = {
 }`
   },
   contentBox: {
+    attributes: `
+    {
+      title
+      dropdown {
+        id
+      }
+    }`,
+    children: {
+      fieldIdentifier: "dropdown",
+      componentIdentifier: "dropdown"
+    }
+  },
+  dropdown: {
     attributes: `{
-            title
-            text
-            labelText
-            countrySelection
-        }`
+      labelText
+      dropdownOptions {
+        label
+        value
+      }
+    }`,
+    childOnly: true
   },
   accordionContainer: {
     attributes: `{

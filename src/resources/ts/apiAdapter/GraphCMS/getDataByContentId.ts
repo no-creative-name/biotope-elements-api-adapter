@@ -14,7 +14,7 @@ const getDataByContentId = async (
     children: []
   };
 
-  const initialQuery = gql`
+  const pageQuery = gql`
   {
 	page(where: {id: "${contentId}"}) {
 		title
@@ -31,7 +31,7 @@ const getDataByContentId = async (
 
   const componentData = await client
     .query({
-      query: initialQuery
+      query: pageQuery
     })
     .then(result => {
       pageData.title = result.data.page.title;
@@ -49,7 +49,7 @@ const getDataByContentId = async (
   return newPageData;
 };
 
-const getComponentQuery = (
+const buildComponentQuery = (
   componentName: string,
   id: string,
   attributes: {}
@@ -78,52 +78,63 @@ const normalizeContainerComponents = async componentData => {
 
   let normalizedChildrenData = await Promise.all(
     data.children.map(async child => {
-      return await normalizeChildData(child);
+      return await getDataForMeta(child);
     })
   );
   return normalizedChildrenData;
 };
 
-const normalizeChildData = child => {
+const getDataForMeta = meta => {
   return client
     .query({
-      query: getComponentQuery(
-        child.componentIdentifier,
-        child.id,
-        attributeMap[child.componentIdentifier].attributes
+      query: buildComponentQuery(
+        meta.componentIdentifier,
+        meta.id,
+        attributeMap[meta.componentIdentifier].attributes
       )
     })
     .then(async result => {
-      const childData = result.data[child.componentIdentifier];
-      delete childData.__typename;
+      const data = result.data[meta.componentIdentifier];
+      data["children"] = [];
+      delete data.__typename;
 
-      if (attributeMap[child.componentIdentifier].children) {
-        const grandChildrenData = [].concat(
-          childData[
-            attributeMap[child.componentIdentifier].children.fieldIdentifier
-          ]
+      const childrenInformation =
+        attributeMap[meta.componentIdentifier].children;
+
+      if (childrenInformation) {
+        const childrenData = [].concat(
+          data[childrenInformation.fieldIdentifier]
         );
-        let normalizedGrandChildrenData = await normalizeGrandChildrenData(
-          grandChildrenData,
-          child.componentIdentifier
+        let normalizedChildrenData = await normalizeChildrenData(
+          childrenData,
+          childrenInformation.componentIdentifier
         );
-        childData["children"] = normalizedGrandChildrenData;
+        data["children"] = normalizedChildrenData;
       }
+
+      if (attributeMap[meta.componentIdentifier].slotAttributes) {
+        const slotAttributes =
+          attributeMap[meta.componentIdentifier].slotAttributes;
+
+        const childrenData = generateChildrenByAttributes(slotAttributes, data);
+
+        data["children"].concat(childrenData);
+      }
+
       return {
-        data: childData,
+        data: data,
         metaData: {
-          componentIdentifier: child.componentIdentifier,
-          id: child.id
+          componentIdentifier: meta.componentIdentifier,
+          id: meta.id
         }
       };
     });
 };
 
-const normalizeGrandChildrenData = (grandChildrenData, childIdentifier) => {
+const normalizeChildrenData = (grandChildrenData, componentIdentifier) => {
   return Promise.all(
     grandChildrenData.map(async grandChildData => {
-      grandChildData["componentIdentifier"] =
-        attributeMap[childIdentifier].children.componentIdentifier;
+      grandChildData["componentIdentifier"] = componentIdentifier;
 
       if (grandChildData["componentIdentifier"] === "component") {
         const componentData = await client
@@ -147,9 +158,31 @@ const normalizeGrandChildrenData = (grandChildrenData, childIdentifier) => {
         ))[0];
       }
 
-      return await normalizeChildData(grandChildData);
+      return await getDataForMeta(grandChildData);
     })
   );
+};
+
+const generateChildrenByAttributes = (slotAttributes, parentData) => {
+  return slotAttributes.map(slotAttribute => {
+    const slottedIdentifier = slotAttribute.slottedIdentifier;
+    const attributes = slotAttribute.attributes;
+
+    let data = {};
+
+    attributes.map(attribute => {
+      data[attribute] = parentData[attribute];
+    });
+
+    const grandChildData = {
+      data: data,
+      metaData: {
+        componentIdentifier: slottedIdentifier,
+        id: "---"
+      }
+    };
+    return grandChildData;
+  });
 };
 
 export default getDataByContentId;
