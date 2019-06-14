@@ -14,11 +14,15 @@ const getDataByContentId = async (
     text
   }
 
-  fragment stage on Stage {
-    backgroundImage {
-      url
-      description
-      fileName
+  fragment teaser on TeaserComponent {
+    heading
+    teaserItemsCollection {
+      items {
+        headline
+        url
+        linklabel
+
+      }
     }
   }
 {
@@ -29,12 +33,13 @@ const getDataByContentId = async (
           __typename
           ...fields
           __typename
-          ...stage
+          ...teaser
         }
       }
     }
   }
   `
+  console.log("Console Log: GraphQL Query", query)
   let page: string;
   const normalizedItems = await fetch(CMSAPI, {
     method: 'POST',
