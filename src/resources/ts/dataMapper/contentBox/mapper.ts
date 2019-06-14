@@ -3,17 +3,19 @@ import { renameGeneralProps } from "../renameGeneralProps";
 import { DataMapper } from "../DataMapper";
 import { mapChildren } from "../mapChildren";
 
-export const dropwdownMapper: DataMapper = normalizedData => {
+export const contentBoxMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
       ...normalizedData.data
     },
     metaData: {
       ...normalizedData.metaData,
-      componentName: `Dropdown`,
-      fileUrl: generateComponentUrl(`components`, `XDropdown`)
+      componentName: `XContentBox`,
+      fileUrl: generateComponentUrl(`components`, `XContentBox`)
     }
   };
+
+  console.log(mappedData);
 
   return mappedData;
 };

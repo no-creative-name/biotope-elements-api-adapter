@@ -25,16 +25,23 @@ export const attributeMap = {
     linkTarget
 }`
   },
+  contentBox: {
+    attributes: `{
+            title
+            text
+            labelText
+            countrySelection
+        }`
+  },
   accordionContainer: {
     attributes: `{
-    title
-    text
-    openFirstItem
-    accordionItems {
-        id
-    }
-}
-`,
+        title
+        text
+        openFirstItem
+        accordionItems {
+            id
+        }
+    }`,
     children: {
       fieldIdentifier: "accordionItems",
       componentIdentifier: "accordionItem"
