@@ -2,7 +2,7 @@ import { generateComponentUrl } from "../../render/tagCreation/generateComponent
 import { DataMapper } from "../DataMapper";
 import { mapChildren } from "../mapChildren";
 
-export const accordionItemMapper: DataMapper = normalizedData => {
+export const accordionContainerMapper: DataMapper = normalizedData => {
   const mappedData = {
     data: {
       ...normalizedData.data,
@@ -10,8 +10,8 @@ export const accordionItemMapper: DataMapper = normalizedData => {
     },
     metaData: {
       ...normalizedData.metaData,
-      componentName: `XAccordionItem`,
-      fileUrl: generateComponentUrl(`components`, `XAccordion/XAccordionItem`)
+      componentName: `XAccordion`,
+      fileUrl: generateComponentUrl(`components`, `XAccordion`)
     }
   };
   return mappedData;

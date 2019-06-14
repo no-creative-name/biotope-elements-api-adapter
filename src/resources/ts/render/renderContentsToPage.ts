@@ -1,10 +1,10 @@
-import { Page } from "../Page";
+import { Page } from "../interfaces/Page";
 import createEZAdapter from "../apiAdapter/EZ/createEZAdapter";
 import createGraphCMSAdapter from "../apiAdapter/GraphCMS/createGraphCMSAdapter";
 import performDataMapping from "../dataMapper/performDataMapping";
 import { generateWebComponentTags } from "./tagCreation/generateWebComponentTags";
 import createHtmlElementFromString from "./tagCreation/createHtmlElementFromString";
-import { NormalizedContent } from "../NormalizedContent";
+import { MappedContent } from "../interfaces/MappedContent";
 
 const CMS_ADAPTER_MAP = {
   EZ: createEZAdapter(),
@@ -16,14 +16,14 @@ export const renderContentsToPage = async (pageId: number) => {
 
   const normalizedPage: Page = await apiAdapter.getPageData(pageId);
 
-  const mapData = await performDataMapping(normalizedPage);
+  const mapData: MappedContent[] = await performDataMapping(normalizedPage);
   normalizedPage.children = mapData;
 
   const root: HTMLElement = document.getElementById("main");
   document.title = normalizedPage.title;
 
   const elements = normalizedPage.children.map(
-    (child: NormalizedContent, index: number) => {
+    (child: MappedContent, index: number) => {
       return generateWebComponentTags(child);
     }
   );

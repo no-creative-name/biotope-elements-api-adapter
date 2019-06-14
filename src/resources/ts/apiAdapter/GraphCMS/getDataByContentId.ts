@@ -1,15 +1,14 @@
-import ApolloClient from "apollo-boost";
-import { gql } from "apollo-boost";
+import ApolloClient, { gql } from "apollo-boost";
 import { attributeMap } from "./attributeMap";
+
+const client = new ApolloClient({
+  uri: CMSAPI
+});
 
 const getDataByContentId = async (
   contentId: number,
   nestedLevel: number = 0
 ) => {
-  const client = new ApolloClient({
-    uri: CMSAPI
-  });
-
   let pageData = {
     title: "",
     children: []
@@ -21,57 +20,31 @@ const getDataByContentId = async (
 		title
 		components (orderBy: pageOrder_ASC) {
 			${Object.keys(attributeMap).map(componentIdentifier => {
-        return `${componentIdentifier} { id }`;
+        return !attributeMap[componentIdentifier].childOnly
+          ? `${componentIdentifier} { id }`
+          : ``;
       })}
 		}
 	}
 }
 `;
 
-  await client
+  const componentData = await client
     .query({
       query: initialQuery
     })
     .then(result => {
       pageData.title = result.data.page.title;
-      const resultData = result.data.page.components;
-      resultData.map(component => {
-        Object.keys(attributeMap).map(componentIdentifier => {
-          component[componentIdentifier]
-            ? pageData.children.push({
-                id: component[componentIdentifier].id,
-                componentIdentifier: componentIdentifier
-              })
-            : null;
-        });
-      });
+      return result.data.page.components;
     });
-  let normalizedChildrenData = await Promise.all(
-    pageData.children.map(async child => {
-      return await client
-        .query({
-          query: getComponentQuery(
-            child.componentIdentifier,
-            child.id,
-            attributeMap[child.componentIdentifier]
-          )
-        })
-        .then(result => {
-          delete result.data[child.componentIdentifier].__typename;
-          return {
-            data: result.data[child.componentIdentifier],
-            metaData: {
-              componentIdentifier: child.componentIdentifier,
-              id: child.id
-            }
-          };
-        });
-    })
+
+  const normalizedComponentData = await normalizeContainerComponents(
+    componentData
   );
 
   const newPageData = {
     title: pageData.title,
-    children: normalizedChildrenData
+    children: normalizedComponentData
   };
   return newPageData;
 };
@@ -87,4 +60,96 @@ const getComponentQuery = (
   }
 `;
 };
+
+const normalizeContainerComponents = async componentData => {
+  let data = {
+    children: []
+  };
+  componentData.map(component => {
+    Object.keys(attributeMap).map(componentIdentifier => {
+      component[componentIdentifier]
+        ? data.children.push({
+            id: component[componentIdentifier].id,
+            componentIdentifier: componentIdentifier
+          })
+        : null;
+    });
+  });
+
+  let normalizedChildrenData = await Promise.all(
+    data.children.map(async child => {
+      return await normalizeChildData(child);
+    })
+  );
+  return normalizedChildrenData;
+};
+
+const normalizeChildData = child => {
+  return client
+    .query({
+      query: getComponentQuery(
+        child.componentIdentifier,
+        child.id,
+        attributeMap[child.componentIdentifier].attributes
+      )
+    })
+    .then(async result => {
+      const childData = result.data[child.componentIdentifier];
+      delete childData.__typename;
+
+      if (attributeMap[child.componentIdentifier].children) {
+        const grandChildrenData = [].concat(
+          childData[
+            attributeMap[child.componentIdentifier].children.fieldIdentifier
+          ]
+        );
+        let normalizedGrandChildrenData = await normalizeGrandChildrenData(
+          grandChildrenData,
+          child.componentIdentifier
+        );
+        childData["children"] = normalizedGrandChildrenData;
+      }
+      return {
+        data: childData,
+        metaData: {
+          componentIdentifier: child.componentIdentifier,
+          id: child.id
+        }
+      };
+    });
+};
+
+const normalizeGrandChildrenData = (grandChildrenData, childIdentifier) => {
+  return Promise.all(
+    grandChildrenData.map(async grandChildData => {
+      grandChildData["componentIdentifier"] =
+        attributeMap[childIdentifier].children.componentIdentifier;
+
+      if (grandChildData["componentIdentifier"] === "component") {
+        const componentData = await client
+          .query({
+            query: gql`{
+				  component(where: {id: "${grandChildData.id}"}) {
+					  ${Object.keys(attributeMap).map(componentIdentifier => {
+              return !attributeMap[componentIdentifier].childOnly
+                ? `${componentIdentifier} { id }`
+                : ``;
+            })}
+				  }
+			  }
+				`
+          })
+          .then(result => {
+            return result.data.component;
+          });
+        return (await normalizeContainerComponents(
+          [].concat(componentData)
+        ))[0];
+      }
+
+      return await normalizeChildData(grandChildData);
+    })
+  );
+};
+
 export default getDataByContentId;

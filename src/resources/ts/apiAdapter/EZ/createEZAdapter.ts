@@ -1,11 +1,11 @@
 import { CMSAdapter } from "../CMSAdapter";
-import { EZPage } from "./interfaces/EZPage";
 import getDataByContentId from "./getDataByContentId";
+import { Page } from "../../interfaces/Page";
 
 const createEZAdapter = (): CMSAdapter => {
   return {
     getPageData: async (pageId: number) => {
-      const pageData: EZPage = await getDataByContentId(pageId);
+      const pageData: Page = await getDataByContentId(pageId);
 
       return {
         title: pageData.title,
