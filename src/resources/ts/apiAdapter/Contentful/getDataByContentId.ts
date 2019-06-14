@@ -4,32 +4,46 @@ import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from "constants";
 const getDataByContentId = async (
   contentId: string,
   nestedLevel: number = 0
+  
 ) => {
   const query = `
-  fragment fields on ImageTextComponent {
+  fragment imageText on ImageTextComponent {
+    __typename
     image {
       title
       url
     }
     text
   }
-
-  fragment stage on Stage {
-    backgroundImage {
-      url
-      description
-      fileName
+    
+  fragment accordionItem on AccordionItemComponent {
+    __typename
+    title
+    content {
+      __typename
+      ...imageText
     }
   }
-{
-  pageTestGraphql(id: "${contentId}") {
-      title
-      componentsCollection(limit: 10) {
-        items {
-          __typename
-          ...fields
-          __typename
-          ...stage
+  
+  fragment accordion on AccordionComponent {
+    title
+    description
+    accordionItemsCollection {
+      items {
+        title
+        ...accordionItem
+      }
+    }
+  }
+  {
+    pageTestGraphql(id: "${contentId}") {
+        title
+        componentsCollection(limit: 10) {
+          items {
+            __typename
+           ...imageText
+           __typename
+           ...accordion
         }
       }
     }

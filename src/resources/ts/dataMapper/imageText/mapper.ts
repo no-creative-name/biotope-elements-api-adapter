@@ -6,8 +6,7 @@ import { deleteProps } from "../deleteProps";
 export const imageTextMapper: DataMapper = (normalizedData) => {
     const mappedData = {
         data: {
-          ...renameGeneralProps(normalizedData.data, {
-            'image.title' : 'image.alt'
+          ...renameGeneralProps(normalizedData.data !== undefined ? normalizedData.data : normalizedData, {
           })
         },
         metaData: {

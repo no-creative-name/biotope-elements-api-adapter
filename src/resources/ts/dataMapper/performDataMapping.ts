@@ -21,10 +21,9 @@ import { routingTeaserItemMapper } from './routingTeaserItem/mapper';
 import { teaserRowMapper } from './teaserRow/mapper';
 import { teaserRowItemMapper } from './teaserRowItem/mapper';
 import { imageTextMapper } from './imageText/mapper'
+import { debug } from 'util';
 
 const contentTypeComponentMap = {
-    'accordion': accordionMapper,
-    'accordion_item': accordionItemMapper,
     'article_tiles': articleTileMapper,
     'article_tiles_item': articleTileItemMapper,
     'list_download': downloadListMapper,
@@ -41,6 +40,8 @@ const contentTypeComponentMap = {
     'tab_container': tabContainerMapper,
     'tab_item': tabItemMapper,
     'ImageTextComponent': imageTextMapper,
+    'AccordionComponent': accordionMapper,
+    'AccordionItemComponent': accordionItemMapper,
     'teaser_routing': routingTeaserMapper,
     'teaser_routing_item': routingTeaserItemMapper,
     'teaser_row': teaserRowMapper,
@@ -48,7 +49,12 @@ const contentTypeComponentMap = {
 }
 
 export const mapData = (content) => {
-    let componentMapper = contentTypeComponentMap[content.metaData.componentIdentifier];
+    let componentMapper;
+    if(content.metaData === undefined) { 
+        componentMapper = contentTypeComponentMap[content.__typename];
+    } else {
+        componentMapper = contentTypeComponentMap[content.metaData.componentIdentifier]
+    }
     if (componentMapper !== undefined) {
         return componentMapper({ ...content });
     }
