@@ -17,6 +17,7 @@ interface MetaData {
 }
 
 interface ContentData {
+    length: any;
     accordionItemsCollection: any;
     children?: NormalizedContent[]
 }

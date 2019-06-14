@@ -28,6 +28,7 @@ const getDataByContentId = async (
   fragment accordion on AccordionComponent {
     title
     description
+    firstItemOpen
     accordionItemsCollection {
       items {
         title
@@ -46,6 +47,7 @@ const getDataByContentId = async (
         text
       }
     }
+  }
   {
     pageTestGraphql(id: "${contentId}") {
         title

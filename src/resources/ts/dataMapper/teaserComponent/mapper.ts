@@ -5,12 +5,13 @@ import { deleteProps } from "../deleteProps";
 import { mapChildren } from "../mapChildren";
 
 export const teaserComponentMapper: DataMapper = (normalizedData) => {
+  const children = normalizedData.data;
     const mappedData = {
         data: {
           ...renameGeneralProps(normalizedData.data, {
-            'teaserItemsCollection.items' : 'children'
+           'teaserItemsCollection.items': 'items'
           }),
-          ...mapChildren(normalizedData.data)
+        
         },
         metaData: {
             ...normalizedData.metaData,
@@ -18,9 +19,6 @@ export const teaserComponentMapper: DataMapper = (normalizedData) => {
             fileUrl: generateComponentUrl(`components`, `XTeaserRow`)
         },
     }
-    console.log("Console Log: ----------------------------------------------------------------------")
-    console.log("Console Log: teaserComponentMapper:DataMapper -> mappedData", mappedData)
-    console.log("Console Log: ----------------------------------------------------------------------")
     // mappedData.data.items = [].concat(mappedData.data.teaserItem)
 
 

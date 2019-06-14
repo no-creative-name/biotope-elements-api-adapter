@@ -5,11 +5,13 @@ import { mapChildren } from "../mapChildren";
 
 export const accordionMapper: DataMapper = (normalizedData) => {
     const children = normalizedData.data;
-   
+
     const mappedData = {
         data: {
             ...renameGeneralProps(normalizedData.data, {
                 'title': 'heading',
+                'description': 'text',
+                'firstItemOpen': 'open-first-item',
                 'accordionItemsCollection.items': 'children'
             }),
             ...mapChildren(children)
