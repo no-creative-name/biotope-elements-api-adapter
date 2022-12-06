@@ -20,7 +20,7 @@
     "ramda": "^0.26.0"
   },
   "devDependencies": {
-    "@biotope/build": "6.1.0-0",
+    "@biotope/build": "7.4.2",
     "@types/mocha": "^5.2.6",
     "@types/webcomponents.js": "^0.6.33",
     "breakpoint-sass": "2.7.1",
